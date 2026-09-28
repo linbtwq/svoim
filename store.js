@@ -9,7 +9,7 @@
         clearAll: function () {
             try {
                 Object.keys(localStorage).filter(function (k) { return k.indexOf('sv-') === 0; }).forEach(function (k) { localStorage.removeItem(k); });
-                sessionStorage.clear();
+                sessionStorage.removeItem('sv-pos');
             } catch (e) {}
         }
     };
@@ -18,7 +18,14 @@
     var KEY = 'sv-saved-v2';
     function all() {
         var d = store.get(KEY, null);
-        if (!d) { d = { places: [], events: [], offers: [] }; var old = store.get('sv-saved', null); if (Array.isArray(old)) d.places = old; }
+        if (!d) d = { places: [], events: [], offers: [] };
+        if (!Array.isArray(d.places)) d.places = [];
+        var old = store.get('sv-saved', null);
+        if (Array.isArray(old)) {
+            old.forEach(function (id) { if (d.places.indexOf(id) === -1) d.places.push(id); });
+            store.set(KEY, d);
+            try { localStorage.removeItem('sv-saved'); } catch (e) {}
+        }
         return d;
     }
     var saved = {
@@ -41,20 +48,29 @@
     /* геолокація координати лише в sessionStorage, нікуди не відправляються */
     var geo = {
         enabled: function () { return store.get('sv-geo', false) === true && !!navigator.geolocation; },
-        position: function (cb) {
-            try { var c = JSON.parse(sessionStorage.getItem('sv-pos')); if (c) return cb(c); } catch (e) {}
+        position: function (cb, fresh) {
+            if (!fresh) {
+                try { var c = JSON.parse(sessionStorage.getItem('sv-pos')); if (c) return cb(c, null); } catch (e) {}
+            }
+            if (!navigator.geolocation) return cb(null, { code: 0 });
             navigator.geolocation.getCurrentPosition(function (p) {
                 var pos = { lat: p.coords.latitude, lng: p.coords.longitude };
                 try { sessionStorage.setItem('sv-pos', JSON.stringify(pos)); } catch (e) {}
-                cb(pos);
-            }, function () { cb(null); }, { timeout: 8000, maximumAge: 300000 });
+                cb(pos, null);
+            }, function (error) { cb(null, error); }, fresh
+                ? { enableHighAccuracy: true, timeout: 12000, maximumAge: 0 }
+                : { timeout: 8000, maximumAge: 300000 });
         },
         dist: function (a, b) {                                   // формула гаверсинуса, метри
             var r = Math.PI / 180, dLat = (b.lat - a.lat) * r, dLng = (b.lng - a.lng) * r;
             var h = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(a.lat * r) * Math.cos(b.lat * r) * Math.sin(dLng / 2) * Math.sin(dLng / 2);
             return 12742000 * Math.asin(Math.sqrt(h));
         },
-        walk: function (m) { return Math.max(1, Math.round(m / 80)) + ' хв пішки'; }   // ≈ 4,8 км/год
+        walk: function (m) {
+            return m >= 1000
+                ? (m / 1000).toFixed(1).replace('.', ',') + ' км пішки'
+                : Math.max(1, Math.round(m / 80)) + ' хв пішки';
+        }
     };
 
     SV.store = store; SV.saved = saved; SV.profile = profile; SV.geo = geo;
@@ -65,9 +81,15 @@
         if (!b) return;
         e.preventDefault();
         var i = b.dataset.save.indexOf(':');
-        var on = saved.toggle(b.dataset.save.slice(0, i), b.dataset.save.slice(i + 1));
+        var kind = b.dataset.save.slice(0, i);
+        var on = saved.toggle(kind, b.dataset.save.slice(i + 1));
         b.setAttribute('aria-pressed', on);
-        if (document.body.dataset.page === 'saved' && !on) {                 // на сторінці збережень елемент зникає
+        b.setAttribute('aria-label', on ? b.dataset.saveLabelOn : b.dataset.saveLabelOff);
+        var label = b.querySelector('[data-save-label]');
+        if (label) label.textContent = on ? b.dataset.saveLabelOn : b.dataset.saveLabelOff;
+        var page = document.body.dataset.page;
+        var ownList = (page === 'my-events' && kind === 'events') || (page === 'my-discounts' && kind === 'offers');
+        if ((ownList || page === 'saved') && !on) {
             var li = b.closest('li');
             if (li) li.remove();
             var ul = document.querySelector('[data-list]'), em = document.querySelector('[data-empty]');

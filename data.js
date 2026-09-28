@@ -3,6 +3,12 @@
    сторінки самі малюють списки з цього файлу.
    порожній масив = на сторінці покажеться повідомлення поки нічого немає.
    ========================================================= */
+var demoDate = function (offset) {
+   var date = new Date();
+   date.setDate(date.getDate() + offset);
+   return [date.getFullYear(), ('0' + (date.getMonth() + 1)).slice(-2), ('0' + date.getDate()).slice(-2)].join('-');
+};
+
 window.SV_DATA = {
     city: 'Луцьк',
     center: [50.7472, 25.3254],          // центр мапи [широта, довгота]
@@ -49,11 +55,27 @@ window.SV_DATA = {
        { id: 'o1', title: '-10% на каву', category: 'Кафе', place: 'my-place', verified: true, image: 'img/o1.jpg' }
        category: Кафе | Послуги | Навчання | Творчість | Розваги
     */
-    offers: [],
+    offers: [
+        {
+            id: 'demo-offer-student',
+            title: 'Знижка для студентів (демо)',
+            category: 'Кафе',
+            verified: false
+        }
+    ],
 
     /* Події. Шаблон:
        { id: 'e1', title: 'Назва', place: 'Де саме', date: '2026-10-01', time: '18:00', category: 'Вечірки', image: 'img/e1.jpg' }
        category: Вечірки | Майстер-класи | Концерти | Розваги
     */
-    events: []
+    events: [
+        {
+            id: 'demo-event-student',
+            title: 'Зустріч студентів (демо)',
+            place: 'Луцьк, локацію буде уточнено',
+            date: demoDate(0),
+            time: '18:00',
+            category: 'Розваги'
+        }
+    ]
 };

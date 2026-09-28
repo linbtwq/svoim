@@ -10,6 +10,9 @@
         /2g$/.test(conn.effectiveType || '') ||
         matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (weak) document.documentElement.classList.add('low-end');
+    try {
+        if (JSON.parse(localStorage.getItem('sv-calm')) === true) document.documentElement.classList.add('reduce-motion');
+    } catch (e) {}
 })();
 
 // 2. спільні помічники пошук по даних з data.js
@@ -134,8 +137,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* ---------- бокова панель справа ---------- */
     var current = location.pathname.split('/').pop() || 'index.html';
-    var links = [['index.html', 'home', 'Головна'], ['needs.html', 'build', 'Знайти потрібне'], ['discounts.html', 'percent', 'Для своїх'],
-                 ['events.html', 'calendar_month', 'Що відбувається'], ['profile.html', 'person', 'Профіль']];
+    var links = [['index.html', 'home', 'Головна'], ['needs.html', 'build', 'Знайти потрібне'], ['map.html', 'location_on', 'Мапа'],
+                 ['discounts.html', 'percent', 'Для своїх'], ['events.html', 'calendar_month', 'Що відбувається'], ['profile.html', 'person', 'Профіль']];
+    var desktopNav = document.querySelector('.header__nav');
+    if (desktopNav && !desktopNav.querySelector('a[href="map.html"]')) {
+        var mapLink = document.createElement('a');
+        mapLink.className = 'header__link' + (current === 'map.html' ? ' is-active' : '');
+        mapLink.href = 'map.html';
+        mapLink.textContent = 'Мапа';
+        if (current === 'map.html') mapLink.setAttribute('aria-current', 'page');
+        desktopNav.appendChild(mapLink);
+    }
     var backdrop = document.createElement('div');
     backdrop.className = 'drawer-backdrop';
     var drawer = document.createElement('aside');
@@ -190,7 +202,10 @@ document.addEventListener('DOMContentLoaded', function () {
         var r = SV.find(q);
         var html =
             group('Що можна зробити', r.services.slice(0, 5).map(function (s) { return link('results.html?service=' + s.id, s.icon, s.label); })) +
-            group('Місця', r.places.slice(0, 5).map(function (p) { return link('place.html?id=' + encodeURIComponent(p.id), 'location_on', p.name, p.category); })) +
+            group('Місця', r.places.slice(0, 5).map(function (p) {
+                var returnTo = (location.pathname.split('/').pop() || 'index.html') + location.search;
+                return link('place.html?id=' + encodeURIComponent(p.id) + '&return=' + encodeURIComponent(returnTo), 'location_on', p.name, p.category);
+            })) +
             group('Знижки', r.offers.slice(0, 5).map(function (o) { return link('discounts.html', 'local_offer', o.title, o.category); })) +
             group('Події', r.events.slice(0, 5).map(function (e) { return link('events.html', 'calendar_month', e.title, e.place); }));
         out.innerHTML = html

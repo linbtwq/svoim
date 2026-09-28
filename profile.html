@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="data.js"></script>
     <script src="script.js"></script>
+    <script src="store.js"></script>
     <script defer src="pages.js"></script>
 </head>
 <body data-page="profile">
@@ -35,15 +36,14 @@
         <div class="profile">
             <div class="profile__head">
                 <span class="avatar"><span class="material-symbols-outlined">person</span></span>
-                <div><h1 class="page-head__title">Привіт, свій!</h1><p class="page-head__sub">Студент, Луцьк</p></div>
+                <div><h1 class="page-head__title" data-profile-name>Привіт, свій!</h1><p class="page-head__sub" data-profile-school>Студент, Луцьк</p></div>
             </div>
             <ul class="menu-list stagger">
-            <li><a class="menu-item" href="#"><span class="material-symbols-outlined">bookmark</span>Мої збереження<span class="material-symbols-outlined">chevron_right</span></a></li>
-            <li><a class="menu-item" href="#"><span class="material-symbols-outlined">event</span>Мої події<span class="material-symbols-outlined">chevron_right</span></a></li>
-            <li><a class="menu-item" href="#"><span class="material-symbols-outlined">percent</span>Мої знижки<span class="material-symbols-outlined">chevron_right</span></a></li>
-            <li><a class="menu-item" href="#"><span class="material-symbols-outlined">settings</span>Налаштування<span class="material-symbols-outlined">chevron_right</span></a></li>
+            <li><a class="menu-item" href="saved.html"><span class="material-symbols-outlined">bookmark</span>Мої збереження<span class="material-symbols-outlined">chevron_right</span></a></li>
+            <li><a class="menu-item" href="my-events.html"><span class="material-symbols-outlined">event</span>Мої події<span class="material-symbols-outlined">chevron_right</span></a></li>
+            <li><a class="menu-item" href="my-discounts.html"><span class="material-symbols-outlined">percent</span>Мої знижки<span class="material-symbols-outlined">chevron_right</span></a></li>
+            <li><a class="menu-item" href="settings.html"><span class="material-symbols-outlined">settings</span>Налаштування<span class="material-symbols-outlined">chevron_right</span></a></li>
             </ul>
-            <button class="btn btn--block btn--outline" type="button">Вийти</button>
         </div>
     </main>
 
