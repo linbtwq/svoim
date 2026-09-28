@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SVOIM</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+
+<div class="app-container">
+    <!-- декоративное свечение на фоне -->
+    <div class="bg-glow"></div>
+    
+    <header class="header">
+        <div class="logo">SVOIM</div>
+        <div class="header-icons">
+            <span class="material-symbols-outlined icon-btn">search</span>
+            <span class="material-symbols-outlined icon-btn">menu</span>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <h1>Ти —<br>тут, і це<br>вже багато.</h1>
+            <p>SVOIM — це про можливості, людей і місто.<br>for students. by students.</p>
+            <button class="btn-primary" id="mainActionBtn">
+                <span>Що тобі зараз потрібно?</span>
+                <span class="material-symbols-outlined arrow">arrow_forward</span>
+            </button>
+        </section>
+
+        <section class="categories-grid">
+            <div class="category-card" onclick="openCategory('needs')">
+                <div class="card-icon-wrapper"><span class="material-symbols-outlined">build</span></div>
+                <div class="card-text">
+                    <h3>Знайти потрібне</h3>
+                    <p>Зарядити телефон, надрукувати документ...</p>
+                    <span class="material-symbols-outlined arrow-small">arrow_forward</span>
+                </div>
+            </div>
+
+            <div class="category-card" onclick="openCategory('discounts')">
+                <div class="card-icon-wrapper"><span class="material-symbols-outlined">percent</span></div>
+                <div class="card-text">
+                    <h3>Для своїх</h3>
+                    <p>Студентські знижки та партнерські пропозиції.</p>
+                    <span class="material-symbols-outlined arrow-small">arrow_forward</span>
+                </div>
+            </div>
+
+            <div class="category-card" onclick="openCategory('events')">
+                <div class="card-icon-wrapper"><span class="material-symbols-outlined">calendar_month</span></div>
+                <div class="card-text">
+                    <h3>Що відбувається</h3>
+                    <p>Події, майстер-класи, вечірки та інше.</p>
+                    <span class="material-symbols-outlined arrow-small">arrow_forward</span>
+                </div>
+            </div>
+
+            <div class="category-card" onclick="openCategory('community')">
+                <div class="card-icon-wrapper"><span class="material-symbols-outlined">group</span></div>
+                <div class="card-text">
+                    <h3>Знайти своїх</h3>
+                    <p>Компанію, однодумців, спільні інтереси.</p>
+                    <span class="material-symbols-outlined arrow-small">arrow_forward</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <nav class="bottom-nav">
+        <button class="nav-item active"><span class="material-symbols-outlined">home</span></button>
+        <button class="nav-item"><span class="material-symbols-outlined">search</span></button>
+        <button class="nav-item"><span class="material-symbols-outlined">map</span></button>
+        <button class="nav-item"><span class="material-symbols-outlined">calendar_today</span></button>
+        <button class="nav-item"><span class="material-symbols-outlined">person</span></button>
+    </nav>
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
