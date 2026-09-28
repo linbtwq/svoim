@@ -169,3 +169,111 @@ body.low-end .bottom-nav {
 }
 body.low-end .bottom-nav { background-color: #ffffff; }
 body.low-end * { box-shadow: none !important; animation: none !important; }
+
+.desktop-nav {
+    display: none;
+}
+
+/* === пк версия/ноут короче дескопт === */
+@media (min-width: 768px) {
+    body {
+        background-color: var(--bg-color); /* убрали черный фон на пк */
+    }
+
+    /* убираем херню телефоном короче типо да */
+    .app-container {
+        max-width: 1200px; /* ширина контента на пк ПК */
+        height: auto;
+        min-height: 100vh;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0 auto;
+    }
+
+    /* шапка пк */
+    .header {
+        padding: 40px 48px;
+    }
+    
+    .desktop-nav {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+    }
+
+    .desktop-nav-item {
+        text-decoration: none;
+        color: var(--text-secondary);
+        font-weight: 600;
+        font-size: 16px;
+        transition: color 0.2s ease;
+    }
+
+    .desktop-nav-item:hover,
+    .desktop-nav-item.active {
+        color: var(--text-primary);
+    }
+
+    .mobile-menu-btn {
+        display: none; 
+    }
+
+    /* осовной контентт */
+    .main-content {
+        padding: 20px 48px 80px 48px;
+        overflow-y: visible; /* скролл выкл */
+    }
+
+    /* ув главный банер */
+    .hero {
+        margin-bottom: 60px;
+        max-width: 700px;
+    }
+
+    .hero h1 {
+        font-size: 72px; /* шрифт пк */
+        margin-bottom: 24px;
+    }
+
+    .hero p {
+        font-size: 18px;
+        max-width: 100%;
+        margin-bottom: 40px;
+    }
+
+    .btn-primary {
+        max-width: 280px;
+        padding: 20px 32px;
+        font-size: 16px;
+    }
+
+    /* стенка в 4 колонки */
+    .categories-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+    }
+
+    .category-card {
+        aspect-ratio: auto;
+        min-height: 220px; /* адаптация карточки */
+        padding: 32px 24px;
+    }
+
+    .card-icon-wrapper span {
+        font-size: 36px;
+    }
+
+    .card-text h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .card-text p {
+        font-size: 13px;
+    }
+
+    /* нижняя навигация */
+    .bottom-nav {
+        display: none;
+    }
+}
