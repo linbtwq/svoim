@@ -280,7 +280,7 @@ main { flex: 1; }
 .empty { margin-top: 24px; font-size: 14px; color: var(--ink-soft); text-align: center; }
 .needs-map-link { margin: -4px 0 18px; }
 
-/* фільтри-чіпси */
+/* фільтри чіпси (популярный элемент веб- и мобильного интерфейса (UX/UI), который выглядит как небольшая интерактивная кнопка со скругленными краями (в форме таблетки))*/
 .chips {
     display: flex;
     gap: 8px;
@@ -712,7 +712,7 @@ body[data-page="my-discounts"] .offer__foot { gap: 8px; }
 .accordion summary .material-symbols-outlined { transition: transform 0.25s; }
 .accordion[open] summary .material-symbols-outlined { transform: rotate(180deg); }
 
-/* Відгук на дії */
+/* відгук на дії */
 .card, .tile, .row, .offer { transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.2s; }
 .card:active, .tile:active, .row:active { transform: scale(0.97); }
 .chip { transition: background-color 0.2s, color 0.2s, border-color 0.2s; }
@@ -726,7 +726,7 @@ body[data-page="my-discounts"] .offer__foot { gap: 8px; }
     .btn:hover .material-symbols-outlined { transform: translateX(4px); }
 }
 
-/* ---------- 7. кнопка телефона (кнопка внизу праворуч, тільки на десктопі) ---------- */
+/* ---------- 7. кнопка телефона (кнопка внизу праворуч, тіки на десктопі) ---------- */
 /*.preview-toggle { display: none; }
 
 /* @media (min-width: 900px) {

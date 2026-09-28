@@ -13,7 +13,7 @@ window.SV_DATA = {
     city: 'Луцьк',
     center: [50.7472, 25.3254],          // центр мапи [широта, довгота]
 
-    /* що можна знайти (плитки на знайти потрібне). id використовується в places[].services */
+    /* що можна знайти (плитки на "знайти потрібне"). id використовується в places[].services */
     services: [
         { id: 'charge',   icon: 'battery_charging_full', label: 'Зарядити телефон' },
         { id: 'print',    icon: 'print',                 label: 'Роздрукувати документ' },
@@ -51,7 +51,7 @@ window.SV_DATA = {
     */
     places: [],
 
-    /* Знижки. Шаблон:
+    /* знижки. шаблон:
        { id: 'o1', title: '-10% на каву', category: 'Кафе', place: 'my-place', verified: true, image: 'img/o1.jpg' }
        category: Кафе | Послуги | Навчання | Творчість | Розваги
     */
@@ -64,7 +64,7 @@ window.SV_DATA = {
         }
     ],
 
-    /* Події. Шаблон:
+    /* події. шаблон:
        { id: 'e1', title: 'Назва', place: 'Де саме', date: '2026-10-01', time: '18:00', category: 'Вечірки', image: 'img/e1.jpg' }
        category: Вечірки | Майстер-класи | Концерти | Розваги
     */
