@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Налаштування — SVOIM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- тільки потрібні іконки (список має бути в алфавітному порядку) -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0..1,0&icon_names=arrow_back,arrow_forward,atm,battery_charging_full,bookmark,build,calendar_month,calendar_today,checkroom,chevron_right,close,computer,content_copy,credit_card,desktop_windows,document_scanner,event,expand_more,favorite,handyman,home,key,local_cafe,local_offer,local_shipping,location_on,menu,more_horiz,palette,payments,percent,person,photo_camera,print,schedule,search,settings,share,smartphone,star&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script src="store.js"></script>
+    <script defer src="pages.js"></script>
+</head>
+<body data-page="settings">
+<div class="page">
+
+    <header class="header">
+        <a class="logo" href="index.html">SVOIM<span class="logo__tag">for students. by students.</span></a>
+        <nav class="header__nav" aria-label="Основна навігація">
+            <a class="header__link" href="index.html">Головна</a>
+            <a class="header__link" href="needs.html">Знайти потрібне</a>
+            <a class="header__link" href="discounts.html">Для своїх</a>
+            <a class="header__link" href="events.html">Що відбувається</a>
+        </nav>
+        <div class="header__actions">
+            <a class="icon-btn" href="needs.html" aria-label="Пошук"><span class="material-symbols-outlined">search</span></a>
+            <button class="icon-btn" type="button" aria-label="Меню"><span class="material-symbols-outlined">menu</span></button>
+        </div>
+    </header>
+
+    <main>
+        <div class="page-head">
+            <a class="back" href="profile.html"><span class="material-symbols-outlined">arrow_back</span>Назад</a>
+            <h1 class="page-head__title">Налаштування</h1>
+        </div>
+        <form class="form" data-settings>
+            <label class="field"><span class="field__label">Ім’я</span><input name="name" maxlength="30" autocomplete="given-name" placeholder="Як до тебе звертатись?"></label>
+            <label class="field"><span class="field__label">Університет або коледж</span><input name="school" maxlength="60" placeholder="Наприклад, ЛНТУ"></label>
+            <label class="switch"><span class="switch__text">Показувати відстань від мене<small>Браузер запитає дозвіл. Координати нікуди не відправляються.</small></span><input type="checkbox" name="geo"></label>
+            <label class="switch"><span class="switch__text">Менше анімацій<small>Полегшує сайт на слабких пристроях.</small></span><input type="checkbox" name="calm"></label>
+            <button class="btn btn--block" type="submit">Зберегти</button>
+        </form>
+        <button class="btn btn--block btn--outline btn--gap" type="button" data-clear>Очистити мої дані</button>
+        <p class="toast" data-toast role="status" hidden></p>
+    </main>
+
+    <nav class="bottom-nav" aria-label="Мобільна навігація">
+        <a class="bottom-nav__item" href="index.html"><span class="material-symbols-outlined">home</span>Головна</a>
+        <a class="bottom-nav__item" href="needs.html"><span class="material-symbols-outlined">search</span>Пошук</a>
+        <a class="bottom-nav__item" href="discounts.html"><span class="material-symbols-outlined">local_offer</span>Для своїх</a>
+        <a class="bottom-nav__item" href="events.html"><span class="material-symbols-outlined">calendar_today</span>Події</a>
+        <a class="bottom-nav__item is-active" href="profile.html" aria-current="page"><span class="material-symbols-outlined">person</span>Профіль</a>
+    </nav>
+</div>
+</body>
+</html>
