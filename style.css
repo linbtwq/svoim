@@ -727,9 +727,9 @@ body[data-page="my-discounts"] .offer__foot { gap: 8px; }
 }
 
 /* ---------- 7. кнопка телефона (кнопка внизу праворуч, тільки на десктопі) ---------- */
-.preview-toggle { display: none; }
+/*.preview-toggle { display: none; }
 
-@media (min-width: 900px) {
+/* @media (min-width: 900px) {
     .preview-toggle {
         position: fixed;
         right: 24px;
@@ -757,7 +757,7 @@ body[data-page="my-discounts"] .offer__foot { gap: 8px; }
     }
     .device {
         width: 390px;                                  /* 390 − рамка 20 = 370px екран */
-        height: min(844px, calc(100dvh - 48px));
+   /*     height: min(844px, calc(100dvh - 48px));
         overflow: hidden;
         border: 10px solid #1F261B;
         border-radius: 48px;
